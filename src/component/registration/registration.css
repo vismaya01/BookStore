@@ -1,0 +1,115 @@
+.Content {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #A03037;
+    border-radius: 8px;
+    margin: 50px auto;
+    width: 550px;
+    box-sizing: border-box;
+    flex-grow: 1;
+    align-items: center;
+    padding-bottom: 48px;
+}
+
+.content-head {
+    color: #FFFFFF;
+    display: flex;
+    flex-direction:column;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.3333;
+    background-color: #A03037;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.form { 
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 -48px;
+    font-size: 14px;
+    padding: 24px 0 0;
+    max-width: 100%;
+}
+
+.row-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.mr {
+    margin-right: 12px !important;
+}
+
+.button-Content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 40px;
+}
+
+.show {
+    display: flex;
+    align-items: center;
+    color: #A03037;
+}
+
+.MuiOutlinedInput-notchedOutline {
+    border-color: #A03037 !important;
+}
+
+.MuiFormLabel-root {
+    color: #A03037 !important;
+}
+
+.MuiButton-textPrimary {
+    color: #A03037 !important;
+}
+
+.MuiButton-containedPrimary {
+    background-color: #A03037 !important;
+}
+
+.MuiCheckbox-colorPrimary.Mui-checked {
+    color: #A03037 !important;
+}
+
+.MuiCheckbox-root {
+    color: #A03037 !important;
+}
+
+.error {
+    color:#db2269;
+    font-size: 0.625em;
+    display: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 550px){
+    .Content {
+        border: 0px;
+        margin: 0px;
+    }
+
+    .row-content {
+        flex-direction: column;
+    }
+
+    .mr {
+        margin-right: 0px !important;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .button-Content {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .button-Content > div {
+        padding-bottom:20px;
+    }
+}
