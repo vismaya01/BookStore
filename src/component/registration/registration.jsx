@@ -1,6 +1,9 @@
 import React from 'react'
 import './registration.css'
 import { Button, TextField, Checkbox, Snackbar } from '@material-ui/core';
+import Service from '../../services/userServices';
+
+const services = new Service()
 
 const validNameRegex = RegExp(/^[A-Z]{1}[a-zA-z\s]{2,}$/i);
 const validEmailRegex = RegExp(
@@ -183,21 +186,29 @@ export default class Registration extends React.Component {
             })
         }
         else {
+            const firstName = this.state.firstName 
+            const lastName =  this.state.lastName
+            const fullName = firstName + lastName 
             let userData = {
-                'firstName': this.state.firstName,
-                'lastName': this.state.lastName,
-                'service': 'advance',
+                'fulltName': fullName ,
                 'email': this.state.email,
                 'password': this.state.password,
             }
-            this.emptyTextField();
-            this.setState({
-                snackBarOpen: true, snackBarMsg: 'Registration is successfull',
-            });
             console.log(userData)
+            this.emptyTextField();
+            services.registration(userData).then(res => {
+                console.log(res)
+                this.setState({
+                    snackBarOpen: true, snackBarMsg: 'Registration is successfull',
+                });
+            }).catch(err => {
+                console.log(err)
+                this.setState({
+                    snackBarOpen: true, snackBarMsg: 'Registration is failed',
+                });
+            })    
         }
     }
-
 
     toggleShow = () => {
         this.setState({ hidden: !this.state.hidden });
@@ -291,7 +302,7 @@ export default class Registration extends React.Component {
                         <Button color="primary">sign in instead</Button>
                         <div>
                             <Button variant="contained" color="primary" onClick={this.handleSubmit}>Sign Up</Button>
-                            <Snackbar open={this.state.snackBarOpen} autoHideDuration={3000} close={!this.state.snackBarOpen} message={this.state.snackBarMsg} />
+                            <Snackbar open={this.state.snackBarOpen} autoHideDuration={3000} message={this.state.snackBarMsg} />
                         </div>
                     </div>
                 </form>
