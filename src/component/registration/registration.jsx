@@ -2,6 +2,7 @@ import React from 'react'
 import './registration.css'
 import { Button, TextField, Checkbox, Snackbar } from '@material-ui/core';
 import Service from '../../services/userServices';
+import { Link } from 'react-router-dom'
 
 const services = new Service()
 
@@ -298,7 +299,7 @@ export default class Registration extends React.Component {
                         <span>show password</span>
                     </div>
                     <div className='button-Content'>
-                        <Button color="primary">sign in instead</Button>
+                        <Button component={Link} to="/login" color="primary" >sign in instead</Button>
                         <div>
                             <Button variant="contained" color="primary" onClick={this.handleSubmit}>Sign Up</Button>
                             <Snackbar open={this.state.snackBarOpen} autoHideDuration={3000} message={this.state.snackBarMsg} />
