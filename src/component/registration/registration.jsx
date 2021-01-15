@@ -194,7 +194,6 @@ export default class Registration extends React.Component {
                 'email': this.state.email,
                 'password': this.state.password,
             }
-            console.log(userData)
             this.emptyTextField();
             services.registration(userData).then(res => {
                 console.log(res)

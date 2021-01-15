@@ -8,4 +8,8 @@ export default class UserService {
     registration = (data) => {
         return httpService.Post(`${this.baseUrl}/bookstore_user/registration`, data);
     }
+
+    login = (data) => {
+        return httpService.Post(`${this.baseUrl}/bookstore_user/login`, data);
+    }
 }
