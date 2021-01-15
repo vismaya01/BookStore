@@ -11,6 +11,8 @@
     align-items: center;
     justify-content: space-around;
     position: fixed;
+    box-sizing: border-box;
+    padding: 4px;
 }
 
 .heading {
@@ -34,6 +36,7 @@
     letter-spacing: 0px;
     color: #FFFFFF;
     text-transform: capitalize;
+    padding-left: 10px;
 }
 
 .search {
@@ -114,5 +117,21 @@
 
     .search {
         width: max-content;
+        background-color: #A03037;
+    }
+
+    .header {
+        padding: 4px 8px;
+        height: 48px;
+    }
+
+    .profile {
+        width: 70px;
+        height: 45px;
+    }
+
+    .cart {
+        width: 70px;
+        height: 45px;
     }
 }

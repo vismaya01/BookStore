@@ -6,6 +6,7 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { Button, IconButton, InputBase} from '@material-ui/core';
+import {Link } from 'react-router-dom'
 
 export default function Appbar() {
     const [open, setOpen] = useState(false);
@@ -27,28 +28,28 @@ export default function Appbar() {
                 </div>
                 <div className="search">
                     <IconButton>
-                        <SearchIcon style={{ width: 15, height: 15 }} />
+                        <SearchIcon fontSize="small" />
                     </IconButton>
                     <InputBase placeholder="Search" fullWidth />
                 </div>
                 <div className="person">
                     <div className="profile" onClick={handleOpen}>
-                        <PersonOutlineIcon />
+                        <PersonOutlineIcon fontSize="small" />
                         Profile
                     </div>
                     <div className={open? "popup" : "hide"}>
                         <div className="sign">
-                            <Button>
+                            <Button component={Link} to="/login">
                                 Login/SignUp
                             </Button>
                         </div>
                         <div className="wishlist">
-                            <FavoriteBorderIcon style={{ width: 15, height: 15 }}/>
+                            <FavoriteBorderIcon fontSize="small"/>
                             Wishlist
                         </div>
                     </div>
                     <div className="cart">
-                        <AddShoppingCartIcon />
+                        <AddShoppingCartIcon fontSize="small" />
                         Cart
                     </div>
                 </div>
