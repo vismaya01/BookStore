@@ -1,0 +1,101 @@
+.display-cart {
+    width: 70%;
+    padding-top: 90px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.cart1 {
+    width: 650px;
+    height: 235px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 1px;
+    padding: 20px 35px;
+    margin: 10px;
+}
+
+.myCart {
+    width: 85px;
+    height: 22px;
+    text-align: left;
+    font: normal normal medium 18px/22px 'Lato';
+    letter-spacing: 0px;
+    color: #0A0102;
+    margin-bottom: 20px;
+}
+
+.bookdetails {
+    width: 236px;
+    height: 135px;
+    display: flex;
+}
+
+.image1 {
+    width: 105px;
+    height: 135px;
+}
+
+.details1 {
+    margin-left: 50px;
+}
+
+.Booktitle {
+    width: 133px;
+    height: 17px;
+    text-align: left;
+    font: normal normal normal 14px/17px 'Lato';
+    letter-spacing: 0px;
+    color: #0A0102;
+}
+
+.quantity {
+    height: 24px;
+    margin-left: 150px;
+    display: flex;
+    align-items: center;
+}
+
+.control {
+    width: 24px;
+    height: 24px;
+    background: #FAFAFA 0% 0% no-repeat padding-box;
+    border: 1px solid #DBDBDB;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.value1 {
+    width: 41px;
+    height: 24px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DBDBDB;
+    border-radius: 1px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.remove {
+    width: 42px;
+    height: 15px;
+    text-align: center;
+    font: normal normal normal 12px/15px Lato;
+    letter-spacing: 0px;
+    color: #0A0102;  
+    margin-left: 30px;
+}
+
+.placeorder {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.customer {
+    width: 650px;
+    height: 40px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DCDCDC;
+    border-radius: 1px;
+    margin: 10px;
+    padding: 10px 35px;
+}
