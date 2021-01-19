@@ -1,0 +1,28 @@
+.form1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.first {
+    display: flex;
+    width: 500px;
+    height: 45px;
+    margin-top: 10px;
+}
+
+.fullName1 {
+    margin-right: 10px !important;
+}
+
+.type {
+    margin-top: 30px;
+    font-weight: normal;
+}
+
+.MuiFormGroup-root {
+    flex-direction: row !important;
+}
+
+.MuiInputBase-root {
+    height: 82px !important;
+}

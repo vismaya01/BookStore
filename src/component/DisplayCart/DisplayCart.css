@@ -6,20 +6,22 @@
 }
 
 .cart1 {
-    width: 650px;
-    height: 235px;
+    width: 774px;
+    height: 245px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: 1px solid #707070;
+    border: 1px solid #DCDCDC;
     border-radius: 1px;
     padding: 20px 35px;
     margin: 10px;
+    box-sizing: border-box;
 }
 
 .myCart {
     width: 85px;
     height: 22px;
     text-align: left;
-    font: normal normal medium 18px/22px 'Lato';
+    font-weight: bold;
+    font-size: 18px/22px ;
     letter-spacing: 0px;
     color: #0A0102;
     margin-bottom: 20px;
@@ -27,17 +29,26 @@
 
 .bookdetails {
     width: 236px;
-    height: 135px;
+    height: 89px;
     display: flex;
+    margin-bottom: 10px;
 }
 
 .image1 {
-    width: 105px;
-    height: 135px;
+    width: 65px;
+    height: 85px;
+}
+
+.image1 > img {
+    width: 65px;
+    height: 85px;
 }
 
 .details1 {
-    margin-left: 50px;
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .Booktitle {
@@ -63,6 +74,7 @@
     border: 1px solid #DBDBDB;
     border-radius: 15px;
     text-align: center;
+    cursor: pointer;
 }
 
 .value1 {
@@ -73,13 +85,12 @@
     border-radius: 1px;
     margin-left: 5px;
     margin-right: 5px;
+    text-align: center;
 }
 
 .remove {
     width: 42px;
-    height: 15px;
     text-align: center;
-    font: normal normal normal 12px/15px Lato;
     letter-spacing: 0px;
     color: #0A0102;  
     margin-left: 30px;
@@ -90,12 +101,62 @@
     justify-content: flex-end;
 }
 
+.placeorder1 {
+    display: none;
+}
+
 .customer {
-    width: 650px;
-    height: 40px;
+    width: 774px;
+    height: 60px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #DCDCDC;
     border-radius: 1px;
     margin: 10px;
     padding: 10px 35px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+.customer1 {
+    width: 774px;
+    height: 460px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DCDCDC;
+    border-radius: 1px;
+    margin: 10px;
+    padding: 20px 35px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+.order {
+    width: 774px;
+    height: 60px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DCDCDC;
+    border-radius: 1px;
+    margin: 10px;
+    padding: 10px 35px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+.order1 {
+    width: 774px;
+    height: 237px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 20px 35px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DCDCDC;
+    border-radius: 1px;
+    font-weight: bold;
 }
