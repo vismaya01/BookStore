@@ -26,7 +26,7 @@ export default class UserService {
     }
 
     getCartBook = (token) => {
-        return httpService.Get(`${this.baseUrl}/bookstore_user​/get_cart_items`,{
+        return httpService.Get(`${this.baseUrl}​/bookstore_user/get_cart_items`,{
             headers: {
                 "x-access-token": `${token}`,
             }

@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         padding: 4,
         fontSize: 12,
     },
-    MuiButtonCcontainedPrimary: {
+    MuiButtonContainedPrimary: {
         backgroundColor: '#3f51b5',
         width: 215,
     },
@@ -23,25 +23,15 @@ const useStyles = makeStyles((theme) => ({
         height: 40,
     },
 }));
-export default function Home() {
+export default function Display(props) {
     const classes = useStyles();
     const [books, setBooks] = useState([]);
-    const [state, setState] = React.useState({
-        sort: "",
-    });
+    const [cart, setCart] = useState([]);
+    const [key, setKey] = useState(false)
 
     const getAllBooks = () => {
         services.getAllBook().then((res) => {
             setBooks(res.data.result)
-            console.log(res.data.result)
-        })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-
-    const getCartBooks = () => {
-        services.getCartBook(localStorage.getItem("userToken")).then((res) => {
             console.log(res.data.result)
         })
             .catch((err) => {
@@ -54,10 +44,23 @@ export default function Home() {
     }, [])
 
     const addCartBook = (value) => {
+        setKey(true)
         services.addCart(value._id, localStorage.getItem("userToken")).then((res) => {
             console.log(res)
         }).catch((err) => {
             console.log(err)
+        })
+    }
+
+    const handleCart = (e) => {
+        setKey(false)
+        let key = e.target.value;
+        setCart(cart.filter((e) => (e !== key)))
+    };
+
+    const handleButton = (index) => {
+        props.cart.map(item => {
+            return item._id === index._id
         })
     }
 
@@ -68,8 +71,8 @@ export default function Home() {
                     <span className="title2"> Books </span>
                     <span>({books.length} items) </span>
                 </div>
-                <FormControl  variant="outlined">
-                    <Select className={classes.MuiOutlinedInputRoot} native value={state.sort}>
+                <FormControl variant="outlined">
+                    <Select className={classes.MuiOutlinedInputRoot} native >
                         <option value={10}>Sort by referance</option>
                         <option value={20}>Price: Low to High</option>
                         <option value={30}>Price: High to Low</option>
@@ -94,12 +97,21 @@ export default function Home() {
                                 RS. {item.price}
                             </div>
                             <div className="button">
-                                <Button onClick={() => addCartBook(item)} variant="contained" color="primary" className={classes.MuiButtonRoot}>
-                                    ADD TO BAG
-                                </Button>
-                                <Button variant="outlined" className={classes.MuiButtonRoot}>
-                                    WISHlIST
-                                </Button>
+                                {key ?
+                                        <Button onClick={(e) => handleCart(e)} variant="contained" color="primary" className={classes.MuiButtonContainedPrimary}>
+                                            ADDED TO BAG
+                                        </Button>
+                                        :
+                                        <>
+                                            <Button onClick={() => { setCart([...cart, index]); addCartBook(item) }} variant="contained" color="primary" className={classes.MuiButtonRoot}>
+                                                ADD TO BAG
+                                            </Button>
+                                            <Button variant="outlined" className={classes.MuiButtonRoot}>
+                                                WISHlIST
+                                            </Button>
+                                        </>
+                               
+                                    }                              
                             </div>
                         </div>
                     </div>

@@ -8,7 +8,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { Button, IconButton, InputBase } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 
-export default function Appbar() {
+export default function Appbar(props) {
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
@@ -23,13 +23,13 @@ export default function Appbar() {
                 </div>
                 <div className="title">
                     BookStore
-                    </div>
-            </div>
-            <div className="search">
-                <IconButton>
-                    <SearchIcon fontSize="small" />
-                </IconButton>
-                <InputBase placeholder="Search" fullWidth />
+                </div>
+                <div className="search">
+                    <IconButton>
+                        <SearchIcon fontSize="small" />
+                    </IconButton>
+                    <InputBase placeholder="Search" fullWidth />
+                </div>
             </div>
             <div className="person">
                 <div className="profile" onClick={handleOpen}>
@@ -49,7 +49,7 @@ export default function Appbar() {
                 </div>
                 <div className="cart">
                     <AddShoppingCartIcon fontSize="small" />
-                    Cart
+                    Cart {props.cart.length}
                 </div>
             </div>
         </div>

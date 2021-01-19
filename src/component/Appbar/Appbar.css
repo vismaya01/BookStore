@@ -12,13 +12,13 @@
     width: 100%;
     box-sizing: border-box;
     padding: 4px;
+    padding-left: 50px;
     position: fixed;
     z-index: 1;
 }
 
 .heading {
     display: flex;
-    width: 130px;
     justify-content: space-between;
     margin-left: 20px;
     margin-right: 10px;
@@ -38,6 +38,7 @@
     color: #FFFFFF;
     text-transform: capitalize;
     padding-left: 10px;
+    margin-right: 10px;
 }
 
 .search {
