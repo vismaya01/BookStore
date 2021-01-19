@@ -1,0 +1,11 @@
+.bookdetails1 {
+    width: 236px;
+    height: 89px;
+    display: flex;
+    margin: 20px;
+}
+
+.checkout {
+    display: flex;
+    justify-content: flex-end;
+}

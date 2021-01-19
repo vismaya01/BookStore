@@ -24,5 +24,6 @@
 }
 
 .MuiInputBase-root {
-    height: 82px !important;
+    height: 82px;
+    display: inline !important;
 }

@@ -3,6 +3,7 @@ import './DisplayCart.css'
 import Image from '../../assets/Image.png'
 import {Button} from '@material-ui/core'
 import Customer from '../Customer/Customer'
+import Order from '../Order/Order'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -65,6 +66,7 @@ export default function DisplayCart() {
             </div>
             <div className={openOrder? "order1" : "order" }>
                 Order Details
+                {openOrder? <Order /> : null }
             </div>
         </div>
     )
