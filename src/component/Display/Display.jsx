@@ -1,7 +1,7 @@
-import { Button } from '@material-ui/core'
+import { Button, FormControl, Select } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import './Home.css'
+import './Display.css'
 import Image from "../../assets/Image.png"
 import Service from '../../services/userServices'
 
@@ -9,20 +9,26 @@ const services = new Service()
 
 const useStyles = makeStyles((theme) => ({
     MuiButtonRoot: {
-        fontSize : 12,
-        width: 100,
+        width: 95,
         height: 40,
-        padding: 5,
+        padding: 4,
+        fontSize: 12,
     },
     MuiButtonCcontainedPrimary: {
         backgroundColor: '#3f51b5',
         width: 215,
     },
+    MuiOutlinedInputRoot: {
+        width: 170,
+        height: 40,
+    },
 }));
 export default function Home() {
     const classes = useStyles();
     const [books, setBooks] = useState([]);
-    const [cart , setCart] = useState(false)
+    const [state, setState] = React.useState({
+        sort: "",
+    });
 
     const getAllBooks = () => {
         services.getAllBook().then((res) => {
@@ -34,21 +40,48 @@ export default function Home() {
             })
     }
 
+    const getCartBooks = () => {
+        services.getCartBook(localStorage.getItem("userToken")).then((res) => {
+            console.log(res.data.result)
+        })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     useEffect(() => {
         getAllBooks()
     }, [])
 
+    const addCartBook = (value) => {
+        services.addCart(value._id, localStorage.getItem("userToken")).then((res) => {
+            console.log(res)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
     return (
         <div className="books">
-            <div className="books1">
-                <span className="title2"> Books </span>
-                <span>({books.length} items) </span>
+            <div className="head">
+                <div className="books1">
+                    <span className="title2"> Books </span>
+                    <span>({books.length} items) </span>
+                </div>
+                <FormControl  variant="outlined">
+                    <Select className={classes.MuiOutlinedInputRoot} native value={state.sort}>
+                        <option value={10}>Sort by referance</option>
+                        <option value={20}>Price: Low to High</option>
+                        <option value={30}>Price: High to Low</option>
+                        <option value={40}>Newest Arrival</option>
+                    </Select>
+                </FormControl>
             </div>
             <div className="display-book">
                 {books.map((item, index) => (
                     <div className="display" key={index}>
                         <div className="image">
-                            <img src={Image} alt="img"/>
+                            <img src={Image} alt="img" />
                         </div>
                         <div className="details">
                             <div className="title1">
@@ -61,18 +94,12 @@ export default function Home() {
                                 RS. {item.price}
                             </div>
                             <div className="button">
-                            {cart ?
-                                <Button onClick={() => setCart(false)} variant="contained" color="primary" className={classes.MuiButtonCcontainedPrimary} >ADDED TO BAG</Button> 
-                            :
-                                <>
-                                <Button onClick={() => setCart(true)} variant="contained" color="primary" className={classes.MuiButtonRoot}>
+                                <Button onClick={() => addCartBook(item)} variant="contained" color="primary" className={classes.MuiButtonRoot}>
                                     ADD TO BAG
                                 </Button>
                                 <Button variant="outlined" className={classes.MuiButtonRoot}>
                                     WISHlIST
                                 </Button>
-                                </>
-                            }
                             </div>
                         </div>
                     </div>

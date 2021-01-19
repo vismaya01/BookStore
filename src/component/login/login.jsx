@@ -120,7 +120,8 @@ export default class Registration extends React.Component {
             }
             this.emptyTextField()
             services.login(userData).then(res => {
-                console.log(res)
+                console.log(res.data.result.accessToken)
+                localStorage.setItem("userToken", res.data.result.accessToken);
                 this.setState({
                     snackBarOpen: true, snackBarMsg: 'Registration is successfull',
                 });

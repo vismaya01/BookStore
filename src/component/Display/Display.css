@@ -7,14 +7,26 @@
     padding-top: 80px;
 }
 
+.head {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
 .title2 {
     font-size: 25px;
     margin-left: 10px;
 }
 
+.MuiSelect-select {
+    padding: 5px !important;
+}
+
 .display-book {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .display {
@@ -78,6 +90,7 @@
     display: flex;
     justify-content: space-between;
 }
+  
 
 @media screen and (max-width: 750px){
     .books {
