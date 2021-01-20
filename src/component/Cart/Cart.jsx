@@ -25,7 +25,7 @@ export default function DashBoard() {
     return (
         <div className="container">
             <Appbar cart={cart} />
-            <Display cart={cart} />
+            <Display cart={cart} getCartBooks={getCartBooks}  />
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { Button, FormControl, Select } from '@material-ui/core'
+import { Button, FormControl, Select, Popover, Typography } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import './Display.css'
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
         height: 40,
         padding: 4,
         fontSize: 12,
-        
+
     },
     MuiButtonContainedPrimary1: {
         backgroundColor: ' #A03037',
@@ -31,19 +31,33 @@ const useStyles = makeStyles((theme) => ({
         width: 170,
         height: 40,
     },
+    popover: {
+        pointerEvents: 'none',
+    },
+    paper: {
+        padding: theme.spacing(1),
+    },
 }));
 export default function Display(props) {
     const classes = useStyles();
     const [books, setBooks] = useState([]);
-    const [cart, setCart] = useState([]);
-    const [key, setKey] = useState(false)
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handlePopoverOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handlePopoverClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
 
     const getAllBooks = () => {
         services.getAllBook().then((res) => {
             setBooks(res.data.result)
             console.log(res.data.result)
-            books.map(item  => item.isAdded = false)
-            books.map(item  => console.log(item))
+            books.map(item => item.isAdded = false)
         })
             .catch((err) => {
                 console.log(err)
@@ -57,21 +71,15 @@ export default function Display(props) {
     const addCartBook = (value) => {
         services.addCart(value._id, localStorage.getItem("userToken")).then((res) => {
             console.log(res)
-            value.isAdded = true
+            getAllBooks()
         }).catch((err) => {
             console.log(err)
         })
     }
 
-    const handleCart = (e) => {
-        setKey(false)
-        let key = e.target.value;
-        setCart(cart.filter((e) => (e !== key)))
-    };
-
     const handleButton = (index) => {
         props.cart.map(item => {
-            if(item.product_id._id === index._id ) {
+            if (item.product_id._id === index._id) {
                 index.isAdded = true
             }
         })
@@ -94,11 +102,36 @@ export default function Display(props) {
                 </FormControl>
             </div>
             <div className="display-book">
-                {books.map((item, index) => ( 
+                {books.map((item, index) => (
                     <div className="display" key={index}>
-                         {handleButton(item)}
-                        <div className="image">
+                        {handleButton(item)}
+                        <div className="image" onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose}>
                             <img src={Image} alt="img" />
+                                {/* <Popover
+                                    id="mouse-over-popover"
+                                    className={classes.popover}
+                                    classes={{
+                                        paper: classes.paper,
+                                    }}
+                                    open={open}
+                                    anchorEl={anchorEl}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'left',
+                                    }}
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'left',
+                                    }}
+                                    onClose={handlePopoverClose}
+                                    disableRestoreFocus> */}
+                                    <div className={anchorEl? "description" : "description1"}  onClose={handlePopoverClose}>
+                                        <div className="book-details">
+                                            Book Details
+                                        </div>
+                                        {item.description}
+                                    </div>
+                                {/* </Popover> */}
                         </div>
                         <div className="details">
                             <div className="title1">
@@ -111,21 +144,21 @@ export default function Display(props) {
                                 RS. {item.price}
                             </div>
                             <div className="button">
-                                {item.isAdded?
-                                        <Button onClick={(e) => handleCart(e)} variant="contained" color="primary" className={classes.MuiButtonContainedPrimary}>
-                                            ADDED TO BAG
+                                {item.isAdded ?
+                                    <Button variant="contained" color="primary" className={classes.MuiButtonContainedPrimary}>
+                                        ADDED TO BAG
                                         </Button>
-                                        :
-                                        <>
-                                            <Button onClick={() => {  addCartBook(item) }} 
-                                                variant="contained" color="primary" className={classes.MuiButtonContainedPrimary1}>
-                                                ADD TO BAG
+                                    :
+                                    <>
+                                        <Button onClick={() => { addCartBook(item) }}
+                                            variant="contained" color="primary" className={classes.MuiButtonContainedPrimary1}>
+                                            ADD TO BAG
                                             </Button>
-                                            <Button variant="outlined" className={classes.MuiButtonRoot}>
-                                                WISHlIST
+                                        <Button variant="outlined" className={classes.MuiButtonRoot}>
+                                            WISHlIST
                                             </Button>
-                                        </>                               
-                                    }                              
+                                    </>
+                                }
                             </div>
                         </div>
                     </div>

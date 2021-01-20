@@ -32,4 +32,20 @@ export default class UserService {
             }
         });
     }
+
+    quantity = (data , value ,token) => {
+        return httpService.Put(`${this.baseUrl}​/bookstore_user/cart_item_quantity/${value}`, data,{
+            headers: {
+                "x-access-token": `${token}`,
+            }
+        });
+    }
+
+    deleteCart = (value ,token) => {
+        return httpService.Delete(`${this.baseUrl}​​/bookstore_user/remove_cart_item/${value}`,{
+            headers: {
+                "x-access-token": `${token}`,
+            }
+        });
+    }
 }

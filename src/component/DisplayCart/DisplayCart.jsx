@@ -5,6 +5,9 @@ import { Button } from '@material-ui/core'
 import Customer from '../Customer/Customer'
 import Order from '../Order/Order'
 import { makeStyles } from '@material-ui/core/styles';
+import Service from '../../services/userServices'
+
+const services = new Service()
 
 const useStyles = makeStyles((theme) => ({
     MuiButtonRoot: {
@@ -14,9 +17,29 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DisplayCart(props) {
     const classes = useStyles();
-    const [quantity, setQuantity] = useState(1)
     const [open, setOpen] = useState(false)
     const [openOrder, setOpenOrder] = useState(false)
+
+    const quantityUpdate = (value , quantity) => {
+        let data = {
+            "quantityToBuy" :  quantity,
+          }
+        services.quantity(data , value._id, localStorage.getItem("userToken")).then(res => {
+            props.getCartBooks()
+            console.log(res)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+    
+
+    const deleteCart = (value) => {
+        services.deleteCart(value._id, localStorage.getItem("userToken")).then(res => {
+            console.log(res)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
 
     return (
         <div className="display-cart">
@@ -24,8 +47,8 @@ export default function DisplayCart(props) {
                 <div className="myCart">
                     My cart
                 </div>
-                {props.cart.map(item =>
-                    <div className="bookdetails">
+                {props.cart.map((item, index) =>
+                    <div className="bookdetails" key={index}>
                         <div className="image1">
                             <img src={Image} alt="img" />
                         </div>
@@ -40,16 +63,16 @@ export default function DisplayCart(props) {
                                 RS. {item.product_id.price}
                             </div>
                             <div className="quantity">
-                                <div className="control" onClick={() => setQuantity(quantity - 1)}>
+                                <div className="control" onClick={() =>{quantityUpdate(item,item.quantityToBuy - 1) }}>
                                     -
                                 </div>
                                 <div className="value1">
-                                    {quantity}
+                                    {item.quantityToBuy}
                                 </div>
-                                <div className="control" onClick={() => setQuantity(quantity + 1)}>
+                                <div className="control" onClick={() =>{quantityUpdate(item,item.quantityToBuy +1)}}>
                                     +
                                 </div>
-                                <div className="remove">
+                                <div className="remove" onClick={() => deleteCart(item)}>
                                     Remove
                                  </div>
                             </div>

@@ -52,6 +52,18 @@
     width: 125px;
 }
 
+.description {
+    position: absolute;
+    width: 130px;
+    height: 150px;
+    z-index: 1;
+    background-color: #FFFFFF;
+}
+
+.description1 {
+    display: none;
+}
+
 .details {
     height: 100px;
     display: flex;
