@@ -24,12 +24,13 @@
     width: 100%;
 }
 
-.content-head > div {
-    height: 80px;
+.Book1 {
+    height: 50px;
+    font-size: 30px;
 }
 
 @media screen and (max-width: 450px){
-    .Content {
+    .Content1 {
         border: 0px;
         margin: 0px;
     }

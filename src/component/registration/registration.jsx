@@ -3,6 +3,7 @@ import './registration.css'
 import { Button, TextField, Checkbox, Snackbar } from '@material-ui/core';
 import Service from '../../services/userServices';
 import { Link } from 'react-router-dom'
+import education from '../../assets/education.svg'
 
 const services = new Service()
 
@@ -36,6 +37,9 @@ export default class Registration extends React.Component {
             errorConfirm: '',
             snackBarOpen: false,
             snackBarMsg: '',
+            phoneNumber: '',
+            errorPhoneNumber:'',
+            phoneNumberFlag: false,
         };
         this.toggleShow = this.toggleShow.bind(this);
     }
@@ -67,6 +71,8 @@ export default class Registration extends React.Component {
             errorEmail: '',
             errorPassword: '',
             errorConfirm: '',
+            errorPhoneNumber:'',
+            phoneNumberFlag: false,
         })
     }
 
@@ -123,6 +129,14 @@ export default class Registration extends React.Component {
             }
         }
 
+        if (this.state.phoneNumber === '') {
+            this.setState({
+                errorPhoneNumber: 'phone number is requied',
+                phoneNumberFlag: true
+            })
+            isValid = true;
+        }
+
         if (this.state.password === '') {
             this.setState({
                 errorPassword: 'password is requied',
@@ -177,6 +191,9 @@ export default class Registration extends React.Component {
             errorEmail: '',
             errorPassword: '',
             errorConfirm: '',
+            phoneNumber: '',
+            errorPhoneNumber:'',
+            phoneNumberFlag: false,
         })
     }
 
@@ -194,6 +211,7 @@ export default class Registration extends React.Component {
                 'fulltName': fullName ,
                 'email': this.state.email,
                 'password': this.state.password,
+                'phone': this.state.phoneNumber
             }
             this.emptyTextField();
             services.registration(userData).then(res => {
@@ -218,10 +236,11 @@ export default class Registration extends React.Component {
         return (
             <div className="Content">
                 <div className='content-head'>
-                    <div>
+                    <div className="Book">
+                        <img src={education} alt="img"/>
                         <h1> Book Store </h1>
                     </div>
-                    <div>Create your Book store Account</div>
+                    <div className="Book1">Sign Up</div>
                 </div>
                 <form className='form'  >
                     <div className="row-content">
@@ -264,6 +283,20 @@ export default class Registration extends React.Component {
                             value={this.state.email}
                         />
                     </div>
+                    <div className='mail' >
+                        <TextField name='phoneNumber'
+                            noValidate
+                            size='small'
+                            label="phoneNumber"
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            onChange={this.handleChange}
+                            error={this.state.phoneNumberFlag}
+                            helperText={this.state.errorPhoneNumber}
+                            value={this.state.phoneNumber}
+                        />
+                    </div>
                     <div className="row-content">
                         <TextField className='mr'
                             type={this.state.hidden ? 'password' : 'text'}
@@ -301,7 +334,7 @@ export default class Registration extends React.Component {
                     <div className='button-Content'>
                         <Button component={Link} to="/login" color="primary" >sign in instead</Button>
                         <div>
-                            <Button variant="contained" color="primary" onClick={this.handleSubmit}>Sign Up</Button>
+                            <Button  variant="contained" color="primary" onClick={this.handleSubmit}>Sign Up</Button>
                             <Snackbar open={this.state.snackBarOpen} autoHideDuration={3000} message={this.state.snackBarMsg} />
                         </div>
                     </div>

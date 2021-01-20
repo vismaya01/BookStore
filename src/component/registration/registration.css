@@ -23,6 +23,18 @@
     width: 100%;
 }
 
+.Book {
+    display: flex;
+    align-items: center;
+}
+
+.Book > img {
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    margin-top: 4px;
+}
+
 .form { 
     width: 80%;
     display: flex;

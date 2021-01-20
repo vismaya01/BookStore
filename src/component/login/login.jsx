@@ -3,6 +3,7 @@ import './login.css'
 import { Button, TextField, Checkbox, Snackbar} from '@material-ui/core';
 import Service from '../../services/userServices';
 import { Link } from 'react-router-dom'
+import education from '../../assets/education.svg'
 
 const services = new Service()
 
@@ -149,12 +150,11 @@ export default class Registration extends React.Component {
         return (
             <div className="Content1">
                 <div className='content-head'>
-                    <div>
+                <div className="Book">
+                        <img src={education} alt="img"/>
                         <h1> Book Store </h1>
                     </div>
-                    <div>
-                        <h3>Sign In</h3>
-                    </div>
+                    <div className="Book1">Sign In</div>
                 </div>
                 <form className='form'  >
                     <div className='mail' >

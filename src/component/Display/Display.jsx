@@ -13,7 +13,16 @@ const useStyles = makeStyles((theme) => ({
         height: 40,
         padding: 4,
         fontSize: 12,
+        
     },
+    MuiButtonContainedPrimary1: {
+        backgroundColor: ' #A03037',
+        width: 95,
+        height: 40,
+        padding: 4,
+        fontSize: 12,
+    },
+
     MuiButtonContainedPrimary: {
         backgroundColor: '#3f51b5',
         width: 215,
@@ -104,13 +113,14 @@ export default function Display(props) {
                                 RS. {item.price}
                             </div>
                             <div className="button">
-                                {console.log(handleButton(item))?
+                                {key?
                                         <Button onClick={(e) => handleCart(e)} variant="contained" color="primary" className={classes.MuiButtonContainedPrimary}>
                                             ADDED TO BAG
                                         </Button>
                                         :
                                         <>
-                                            <Button onClick={() => { setCart([...cart, index]); addCartBook(item) }} variant="contained" color="primary" className={classes.MuiButtonRoot}>
+                                            <Button onClick={() => { setCart([...cart, index]); addCartBook(item) }} 
+                                                variant="contained" color="primary" className={classes.MuiButtonContainedPrimary1}>
                                                 ADD TO BAG
                                             </Button>
                                             <Button variant="outlined" className={classes.MuiButtonRoot}>
