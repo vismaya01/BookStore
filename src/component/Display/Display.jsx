@@ -59,9 +59,16 @@ export default function Display(props) {
     };
 
     const handleButton = (index) => {
+        let button = false
         props.cart.map(item => {
-            return item._id === index._id
+            if(item.product_id._id === index._id ) {
+                button = true
+            }
+            else{
+                button = false
+            }
         })
+        return button
     }
 
     return (
@@ -97,7 +104,7 @@ export default function Display(props) {
                                 RS. {item.price}
                             </div>
                             <div className="button">
-                                {key ?
+                                {console.log(handleButton(item))?
                                         <Button onClick={(e) => handleCart(e)} variant="contained" color="primary" className={classes.MuiButtonContainedPrimary}>
                                             ADDED TO BAG
                                         </Button>
@@ -109,8 +116,7 @@ export default function Display(props) {
                                             <Button variant="outlined" className={classes.MuiButtonRoot}>
                                                 WISHlIST
                                             </Button>
-                                        </>
-                               
+                                        </>                               
                                     }                              
                             </div>
                         </div>

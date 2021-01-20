@@ -11,6 +11,7 @@ export default function DashBoard() {
     const getCartBooks = () => {
         services.getCartBook(localStorage.getItem("userToken")).then((res) => {
             setCart(res.data.result)
+            console.log(res.data.result)
         })
             .catch((err) => {
                 console.log(err)

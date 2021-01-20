@@ -65,7 +65,7 @@ export default function DisplayCart() {
                 {open? <Customer open={openOrder} setOpen={setOpenOrder} /> : null }              
             </div>
             <div className={openOrder? "order1" : "order" }>
-                Order Details
+                Order Summery
                 {openOrder? <Order /> : null }
             </div>
         </div>

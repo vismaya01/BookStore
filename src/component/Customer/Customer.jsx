@@ -12,50 +12,129 @@ const useStyles = makeStyles((theme) => ({
     MuiFormControlRoot: {
         height: 82,
         width: 500,
-        marginTop: 10,
+        marginTop: 20,
         marginBottom: 5,
     },
 }));
 
 const Customer = (props) => {
     const classes = useStyles();
+    const [name ,setName] = useState("")
+    const [phoneNumber, setPhoneNumber] = useState("")
+    const [pincode, setPincode] = useState("")
+    const [locality, setLocality] = useState("")
+    const [address, setAddress] = useState("")
+    const [city, setCity] = useState("")
+    const [landMark, setLandMark] = useState("")
+    const [type, setType] = useState("")
+    const [errorName ,setErrorName] = useState("")
+    const [errorphoneNumber, setErrorPhoneNumber] = useState("")
+    const [errorpincode, setErrorPincode] = useState("")
+    const [errorlocality, setErrorLocality] = useState("")
+    const [erroraddress, setErrorAddress] = useState("")
+    const [errorcity, setErrorCity] = useState("")
+    const [errorlandMark, setErrorLandMark] = useState("")
+    const [flagName ,setflagName] = useState(false)
+    const [flagphoneNumber, setflagPhoneNumber] = useState(false)
+    const [flagpincode, setflagPincode] = useState(false)
+    const [flaglocality, setflagLocality] = useState(false)
+    const [flagaddress, setflagAddress] = useState(false)
+    const [flagcity, setflagCity] = useState(false)
+    const [flaglandMark, setflagLandMark] = useState(false)
+
+    const validate = () => {
+        let valid = false
+        if(name === "" ) {
+            valid = true
+            setErrorName("name is required")
+            setflagName(true)
+        }
+        if(phoneNumber === "" ) {
+            valid = true
+            setErrorPhoneNumber("phoneNumber is required")
+            setflagPhoneNumber(true)
+        }
+        if(pincode === "" ) {
+            valid = true
+            setErrorPincode("pincode is required")
+            setflagPincode(true)
+        }
+        if(locality === "" ) {
+            valid = true
+            setErrorLocality("locality is required")
+            setflagLocality(true)
+        }
+        if(address === "" ) {
+            valid = true
+            setErrorAddress("address is required")
+            setflagAddress(true)
+        }
+        if(city === "" ) {
+            valid = true
+            setErrorCity("city/town is required")
+            setflagCity(true)
+        }
+        if(landMark === "" ) {
+            valid = true
+            setErrorLandMark("land mark  is required")
+            setflagLandMark(true)
+        }
+
+        return valid
+    }
+
+    const CustomerDetails = () => {
+        if(validate()) {
+            console.log("failed")
+        }
+        else {
+            console.log("successed")
+            props.setOpen(true)
+        }
+       
+    } 
 
     return (
         <div className="form1">
             <div className="first">
-                <TextField noValidate size='small' label="Name"
-                    fullWidth margin="normal" variant="outlined" className="fullName1" />
-                <TextField noValidate size='small' label="Phone number"
-                    fullWidth margin="normal" variant="outlined" />
+                <TextField noValidate size='small' label="Name" onChange={(e) => setName(e.target.value)}
+                    error={flagName} helperText={errorName} fullWidth margin="normal" variant="outlined" 
+                    className="fullName1" />
+                <TextField noValidate size='small' label="Phone number" onChange={(e) => setPhoneNumber(e.target.value)}
+                    error={flagphoneNumber} helperText={errorphoneNumber} fullWidth 
+                    margin="normal" variant="outlined" />
             </div>
             <div className="first">
-                <TextField noValidate size='small' label="Pincode"
-                    fullWidth margin="normal" variant="outlined" className="fullName1" />
-                <TextField noValidate size='small' label="Locality"
-                    fullWidth margin="normal" variant="outlined" />
+                <TextField noValidate size='small' label="Pincode" onChange={(e) => setPincode(e.target.value)}
+                    error={flagpincode} helperText={errorpincode} fullWidth margin="normal" 
+                    variant="outlined" className="fullName1" />
+                <TextField noValidate size='small' label="Locality" onChange={(e) => setLocality(e.target.value)}
+                    error={flaglocality} helperText={errorlocality} fullWidth margin="normal" variant="outlined" />
             </div>
-            <div className={classes.MuiFormControlRoot}>
+            <div className="first">
                 <StylesProvider injectFirst>
-                    <TextField className={classes.MuiInputBaseRoot} noValidate size='small' label="Address"
-                        multiline fullWidth margin="normal" variant="outlined" />
+                    <TextField noValidate size='small' label="Address"
+                       onChange={(e) => setAddress(e.target.value)} multiline fullWidth 
+                       error={flagaddress} helperText={erroraddress} margin="normal" variant="outlined" />
                 </StylesProvider>
             </div>
             <div className="first">
-                <TextField noValidate size='small' label="city/town"
-                    fullWidth margin="normal" variant="outlined" className="fullName1" />
-                <TextField noValidate size='small' label="LandMark"
-                    fullWidth margin="normal" variant="outlined" />
+                <TextField noValidate size='small' label="city/town" onChange={(e) => setCity(e.target.value)}
+                     error={flagcity} helperText={errorcity} fullWidth margin="normal" 
+                     variant="outlined" className="fullName1" />
+                <TextField noValidate size='small' label="LandMark" onChange={(e) => setLandMark(e.target.value)}
+                     error={flaglandMark} helperText={errorlandMark} fullWidth margin="normal" variant="outlined" />
             </div>
             <div className="type">
                 Type
-                   <RadioGroup>
-                    <FormControlLabel control={<Radio />} label="Home" />
-                    <FormControlLabel control={<Radio />} label="Work" />
-                    <FormControlLabel control={<Radio />} label="Other" />
+                   <RadioGroup onClick={(e) => setType(e.target.value)}>
+                    <FormControlLabel value={"Home"} control={<Radio />} label="Home" />
+                    <FormControlLabel value={"Work"} control={<Radio />} label="Work" />
+                    <FormControlLabel value={"Other"} control={<Radio />} label="Other" />
                 </RadioGroup>
             </div>
             <div className={props.open ? "placeorder1" : "placeorder"}>
-                <Button className={classes.MuiButtonRoot} onClick={() => props.setOpen(true)} variant="contained" color="primary">
+                <Button className={classes.MuiButtonRoot} onClick={() =>  CustomerDetails()} variant="contained" color="primary">
                     CUNTINUE
                 </Button>
             </div>

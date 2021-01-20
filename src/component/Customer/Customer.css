@@ -7,7 +7,7 @@
     display: flex;
     width: 500px;
     height: 45px;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .fullName1 {
@@ -21,9 +21,4 @@
 
 .MuiFormGroup-root {
     flex-direction: row !important;
-}
-
-.MuiInputBase-root {
-    height: 82px;
-    display: inline !important;
 }

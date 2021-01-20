@@ -121,7 +121,7 @@
 
 .customer1 {
     width: 774px;
-    height: 460px;
+    height: 450px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #DCDCDC;
     border-radius: 1px;
@@ -159,4 +159,26 @@
     border: 1px solid #DCDCDC;
     border-radius: 1px;
     font-weight: bold;
+}
+
+@media screen and (max-width: 1000px) {
+    .cart1 {
+        width: 100%;
+    }
+
+    .customer {
+        width: 100%;
+    }
+
+    .order {
+        width: 100%;
+    }
+
+    .customer1 {
+        width: 100%;
+    }
+
+    .order1 {
+        width: 100%;
+    }
 }
