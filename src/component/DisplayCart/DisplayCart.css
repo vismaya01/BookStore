@@ -7,7 +7,6 @@
 
 .cart1 {
     width: 774px;
-    height: 245px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #DCDCDC;
     border-radius: 1px;
@@ -62,7 +61,6 @@
 
 .quantity {
     height: 24px;
-    margin-left: 150px;
     display: flex;
     align-items: center;
 }

@@ -42,6 +42,8 @@ export default function Display(props) {
         services.getAllBook().then((res) => {
             setBooks(res.data.result)
             console.log(res.data.result)
+            books.map(item  => item.isAdded = false)
+            books.map(item  => console.log(item))
         })
             .catch((err) => {
                 console.log(err)
@@ -53,9 +55,9 @@ export default function Display(props) {
     }, [])
 
     const addCartBook = (value) => {
-        setKey(true)
         services.addCart(value._id, localStorage.getItem("userToken")).then((res) => {
             console.log(res)
+            value.isAdded = true
         }).catch((err) => {
             console.log(err)
         })
@@ -68,16 +70,11 @@ export default function Display(props) {
     };
 
     const handleButton = (index) => {
-        let button = false
         props.cart.map(item => {
             if(item.product_id._id === index._id ) {
-                button = true
-            }
-            else{
-                button = false
+                index.isAdded = true
             }
         })
-        return button
     }
 
     return (
@@ -97,8 +94,9 @@ export default function Display(props) {
                 </FormControl>
             </div>
             <div className="display-book">
-                {books.map((item, index) => (
+                {books.map((item, index) => ( 
                     <div className="display" key={index}>
+                         {handleButton(item)}
                         <div className="image">
                             <img src={Image} alt="img" />
                         </div>
@@ -113,13 +111,13 @@ export default function Display(props) {
                                 RS. {item.price}
                             </div>
                             <div className="button">
-                                {key?
+                                {item.isAdded?
                                         <Button onClick={(e) => handleCart(e)} variant="contained" color="primary" className={classes.MuiButtonContainedPrimary}>
                                             ADDED TO BAG
                                         </Button>
                                         :
                                         <>
-                                            <Button onClick={() => { setCart([...cart, index]); addCartBook(item) }} 
+                                            <Button onClick={() => {  addCartBook(item) }} 
                                                 variant="contained" color="primary" className={classes.MuiButtonContainedPrimary1}>
                                                 ADD TO BAG
                                             </Button>
