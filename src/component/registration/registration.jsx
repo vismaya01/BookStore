@@ -1,7 +1,8 @@
 import React from 'react'
 import './registration.css'
-import { Button, TextField, Checkbox, Snackbar } from '@material-ui/core';
+import { Button, TextField, Checkbox} from '@material-ui/core';
 import Service from '../../services/userServices';
+import Snackbar from '../snackBar/snackBar';
 import { Link } from 'react-router-dom'
 import education from '../../assets/education.svg'
 
@@ -335,7 +336,7 @@ export default class Registration extends React.Component {
                         <Button component={Link} to="/login" color="primary" >sign in instead</Button>
                         <div>
                             <Button  variant="contained" color="primary" onClick={this.handleSubmit}>Sign Up</Button>
-                            <Snackbar open={this.state.snackBarOpen} autoHideDuration={3000} message={this.state.snackBarMsg} />
+                            <Snackbar open={this.state.snackBarOpen} close={this.snackBarClose} message={this.state.snackBarMsg} />
                         </div>
                     </div>
                 </form>
