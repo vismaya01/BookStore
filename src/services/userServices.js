@@ -48,4 +48,12 @@ export default class UserService {
             }
         });
     }
+
+    customerDetails = (data,token) => {
+        return httpService.Put(`${this.baseUrl}​​/bookstore_user/edit_user`, data,{
+            headers: {
+                "x-access-token": `${token}`,
+            }
+        });
+    }
 }

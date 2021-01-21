@@ -7,6 +7,18 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { Button, IconButton, InputBase } from '@material-ui/core';
 import { Link } from 'react-router-dom'
+import Badge from '@material-ui/core/Badge';
+import { withStyles } from '@material-ui/core/styles';
+
+const StyledBadge = withStyles((theme) => ({
+  badge: {
+    right: -3,
+    top: 13,
+    padding: '0 4px',
+    backgroundColor: '#ffffff',
+    color: 'black',
+  },
+}))(Badge);
 
 export default function Appbar(props) {
     const [open, setOpen] = useState(false);
@@ -48,8 +60,12 @@ export default function Appbar(props) {
                     </div>
                 </div>
                 <div className="cart">
-                    <AddShoppingCartIcon fontSize="small" />
-                    Cart {props.cart.length}
+                    Cart 
+                    <IconButton aria-label="cart" style={{color: '#ffffff'}}>
+                        <StyledBadge badgeContent={props.cart.length}>
+                            <AddShoppingCartIcon fontSize="small" />
+                        </StyledBadge>
+                    </IconButton>
                 </div>
             </div>
         </div>

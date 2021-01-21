@@ -4,6 +4,9 @@ import { TextField, Radio, Button } from '@material-ui/core'
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { makeStyles, StylesProvider } from '@material-ui/core/styles';
+import Service from '../../services/userServices'
+
+const services = new Service()
 
 const useStyles = makeStyles((theme) => ({
     MuiButtonRoot: {
@@ -25,7 +28,7 @@ const Customer = (props) => {
     const [locality, setLocality] = useState("")
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
-    const [landMark, setLandMark] = useState("")
+    const [state, setState] = useState("")
     const [type, setType] = useState("")
     const [errorName ,setErrorName] = useState("")
     const [errorphoneNumber, setErrorPhoneNumber] = useState("")
@@ -33,14 +36,14 @@ const Customer = (props) => {
     const [errorlocality, setErrorLocality] = useState("")
     const [erroraddress, setErrorAddress] = useState("")
     const [errorcity, setErrorCity] = useState("")
-    const [errorlandMark, setErrorLandMark] = useState("")
+    const [errorState, setErrorState] = useState("")
     const [flagName ,setflagName] = useState(false)
     const [flagphoneNumber, setflagPhoneNumber] = useState(false)
     const [flagpincode, setflagPincode] = useState(false)
     const [flaglocality, setflagLocality] = useState(false)
     const [flagaddress, setflagAddress] = useState(false)
     const [flagcity, setflagCity] = useState(false)
-    const [flaglandMark, setflagLandMark] = useState(false)
+    const [flagState, setflagState] = useState(false)
 
     const validate = () => {
         let valid = false
@@ -74,10 +77,10 @@ const Customer = (props) => {
             setErrorCity("city/town is required")
             setflagCity(true)
         }
-        if(landMark === "" ) {
+        if(state === "" ) {
             valid = true
-            setErrorLandMark("land mark  is required")
-            setflagLandMark(true)
+            setErrorState("land mark  is required")
+            setflagState(true)
         }
         return valid
     }
@@ -88,7 +91,19 @@ const Customer = (props) => {
         }
         else {
             console.log("successed")
-            props.setOpen(true)
+            let data =  {
+                "addressType": type,
+                "fullAddress": address +","+ locality +"," + pincode ,
+                "city": city,
+                "state": state,
+            }
+            services.customerDetails(data, localStorage.getItem("userToken")).then(res => {
+                console.log(res)
+                props.setOpen(true)
+            }).catch(err => {
+                console.log(err)
+            })
+            
         }
        
     } 
@@ -111,18 +126,16 @@ const Customer = (props) => {
                     error={flaglocality} helperText={errorlocality} fullWidth margin="normal" variant="outlined" />
             </div>
             <div className="first">
-                <StylesProvider injectFirst>
                     <TextField noValidate size='small' label="Address"
                        onChange={(e) => setAddress(e.target.value)} multiline fullWidth 
                        error={flagaddress} helperText={erroraddress} margin="normal" variant="outlined" />
-                </StylesProvider>
             </div>
             <div className="first">
                 <TextField noValidate size='small' label="city/town" onChange={(e) => setCity(e.target.value)}
                      error={flagcity} helperText={errorcity} fullWidth margin="normal" 
                      variant="outlined" className="fullName1" />
-                <TextField noValidate size='small' label="LandMark" onChange={(e) => setLandMark(e.target.value)}
-                     error={flaglandMark} helperText={errorlandMark} fullWidth margin="normal" variant="outlined" />
+                <TextField noValidate size='small' label="State" onChange={(e) => setState(e.target.value)}
+                     error={flagState} helperText={errorState} fullWidth margin="normal" variant="outlined" />
             </div>
             <div className="type">
                 Type
