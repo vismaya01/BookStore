@@ -2,8 +2,8 @@
     height: 90vh;
     display: flex;
     flex-direction: column;
-    margin-left: 140px;
-    margin-right: 140px;
+    margin-left: 280px;
+    margin-right: 150px;
     padding-top: 80px;
 }
 
@@ -26,7 +26,7 @@
 .display-book {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .display {

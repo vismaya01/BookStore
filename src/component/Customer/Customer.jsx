@@ -79,7 +79,6 @@ const Customer = (props) => {
             setErrorLandMark("land mark  is required")
             setflagLandMark(true)
         }
-
         return valid
     }
 
