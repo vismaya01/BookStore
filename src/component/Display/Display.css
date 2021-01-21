@@ -53,7 +53,8 @@
     width: 125px;
 }
 
-.description {
+.image:hover .description {
+    display: block;
     position: absolute;
     width: 180px;
     height: 180px;
@@ -62,7 +63,7 @@
     padding: 10px;
 }
 
-.description1 {
+.description {
     display: none;
 }
 

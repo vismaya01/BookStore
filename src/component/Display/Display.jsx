@@ -1,9 +1,10 @@
-import { Button, FormControl, Select, Popover, Typography } from '@material-ui/core'
+import { Button, FormControl, Select } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import './Display.css'
 import Image from "../../assets/Image.png"
 import Pagination from '@material-ui/lab/Pagination';
+import { useHistory } from "react-router-dom";
 import Service from '../../services/userServices'
 
 const services = new Service()
@@ -42,27 +43,39 @@ const useStyles = makeStyles((theme) => ({
 export default function Display(props) {
     const classes = useStyles();
     const [books, setBooks] = useState([]);
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    let history = useHistory();
+    const [sort, setSort] = useState(10)
 
-    const handlePopoverOpen = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handlePopoverClose = () => {
-        setAnchorEl(null);
-    };
-
-    const open = Boolean(anchorEl);
-
-    const getAllBooks = () => {
+    const getAllBooks = (sort) => {
         services.getAllBook().then((res) => {
             setBooks(res.data.result)
             console.log(res.data.result)
             books.map(item => item.isAdded = false)
+            console.log(sort)
+            switch(sort) {
+                case "20":
+                    console.log("hii")
+                    setBooks(books.sort((a, b) => (
+                        a.price > b.price ? 1 : -1
+                    )))
+                    break;
+                case "30":
+                    setBooks(books.sort((a, b) => (
+                        a.price < b.price ? 1 : -1
+                    )))
+                    break;
+                case "40":
+                    setBooks(books.sort((a, b) => (
+                        a.updatedAt < b.updatedAt ? 1 : -1
+                    )))
+                    break;
+                default:
+                    break;
+            }
+            console.log(books)
+        }).catch((err) => {
+            console.log(err)
         })
-            .catch((err) => {
-                console.log(err)
-            })
     }
 
     useEffect(() => {
@@ -72,7 +85,8 @@ export default function Display(props) {
     const addCartBook = (value) => {
         services.addCart(value._id, localStorage.getItem("userToken")).then((res) => {
             console.log(res)
-            getAllBooks()
+            props.getCartBooks()
+            history.push("/cart")
         }).catch((err) => {
             console.log(err)
         })
@@ -86,6 +100,11 @@ export default function Display(props) {
         })
     }
 
+    const handleSort = (e) => {
+        let selectedValue = e.target.value;
+        getAllBooks(selectedValue)
+    }
+
     return (
         <div className="books">
             <div className="head">
@@ -94,7 +113,7 @@ export default function Display(props) {
                     <span>({books.length} items) </span>
                 </div>
                 <FormControl variant="outlined">
-                    <Select className={classes.MuiOutlinedInputRoot} native >
+                    <Select className={classes.MuiOutlinedInputRoot} id="selectBox" native onChange={(e) => handleSort(e)}  >
                         <option value={10}>Sort by referance</option>
                         <option value={20}>Price: Low to High</option>
                         <option value={30}>Price: High to Low</option>
@@ -104,11 +123,11 @@ export default function Display(props) {
             </div>
             <div className="display-book">
                 {books.map((item, index) => (
-                    <div className="display" key={index}>
+                    <div className="display" key={index} >
                         {handleButton(item)}
-                        <div className="image" onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose}>
-                            <img src={Image} alt="img" />                        
-                            <div className={anchorEl ? "description" : "description1"} onClose={handlePopoverClose}>
+                        <div className="image">
+                            <img src={Image} alt="img" />
+                            <div className="description">
                                 <div className="book-details">
                                     Book Details
                                         </div>

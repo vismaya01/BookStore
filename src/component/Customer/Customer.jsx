@@ -3,7 +3,7 @@ import './Customer.css'
 import { TextField, Radio, Button } from '@material-ui/core'
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { makeStyles, StylesProvider } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Service from '../../services/userServices'
 
 const services = new Service()

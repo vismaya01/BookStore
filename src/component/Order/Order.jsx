@@ -18,18 +18,15 @@ const Order = (props) => {
 
     const placeOerder = () => {
         let orders = []
-        {props.cart.map(item => {
-            
+        props.cart.map((item)=> {           
             let product = {
                 "product_id": item.product_id._id,
                 "product_name": item.product_id.bookName,
                 "product_quantity": item.quantityToBuy,
                 "product_price": item.product_id.price
             }
-            orders = [
-                   ...orders , product
-            ]            
-        })}       
+            orders = [...orders , product]            
+        })      
         let data = {
             "orders" : orders
         }

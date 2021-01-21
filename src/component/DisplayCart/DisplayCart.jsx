@@ -35,6 +35,7 @@ export default function DisplayCart(props) {
     const deleteCart = (value) => {
         services.deleteCart(value._id, localStorage.getItem("userToken")).then(res => {
             console.log(res)
+            props.getCartBooks()
         }).catch(err => {
             console.log(err)
         })
@@ -44,7 +45,7 @@ export default function DisplayCart(props) {
         <div className="display-cart">
             <div className="cart1">
                 <div className="myCart">
-                    My cart
+                    My cart {props.cart.length}
                 </div>
                 {props.cart.map((item, index) =>
                     <div className="bookdetails" key={index}>

@@ -11,13 +11,13 @@ import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
 
 const StyledBadge = withStyles((theme) => ({
-  badge: {
-    right: -3,
-    top: 13,
-    padding: '0 4px',
-    backgroundColor: '#ffffff',
-    color: 'black',
-  },
+    badge: {
+        right: -3,
+        top: 13,
+        padding: '0 4px',
+        backgroundColor: '#ffffff',
+        color: 'black',
+    },
 }))(Badge);
 
 export default function Appbar(props) {
@@ -27,11 +27,17 @@ export default function Appbar(props) {
         setOpen(!open)
     }
 
+    const handleLogout = () => {
+        localStorage.clear();
+    }
+
     return (
         <div className="header">
             <div className="heading">
                 <div className="logo">
-                    <img src={education} alt='img' />
+                    <IconButton style={{ padding: 0 }} component={Link} to="/dashBoard">
+                        <img src={education} alt='img' />
+                    </IconButton>
                 </div>
                 <div className="title">
                     BookStore
@@ -50,9 +56,15 @@ export default function Appbar(props) {
                 </div>
                 <div className={open ? "popup" : "hide"}>
                     <div className="sign">
-                        <Button component={Link} to="/login">
-                            Login/SignUp
-                        </Button>
+                        {localStorage.getItem("userToken") === "" ?
+                            <Button component={Link} to="/login">
+                                Login/SignUp
+                            </Button>
+                            :
+                            <Button onClick={handleLogout} >
+                                LogOut
+                            </Button>
+                        }
                     </div>
                     <div className="wishlist">
                         <FavoriteBorderIcon fontSize="small" />
@@ -60,8 +72,8 @@ export default function Appbar(props) {
                     </div>
                 </div>
                 <div className="cart">
-                    Cart 
-                    <IconButton aria-label="cart" style={{color: '#ffffff'}}>
+                    Cart
+                    <IconButton aria-label="cart" style={{ color: '#ffffff' }} component={Link} to="/dashBoard/cart">
                         <StyledBadge badgeContent={props.cart.length}>
                             <AddShoppingCartIcon fontSize="small" />
                         </StyledBadge>
