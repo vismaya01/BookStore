@@ -3,6 +3,8 @@ import Appbar from '../Appbar/Appbar'
 import Display from '../DisplayCart/DisplayCart'
 import Service from '../../services/userServices'
 import Footer from '../Footer/Footer'
+import PlaceOrder from '../OrderPlaced/OrderPlaced'
+import { Switch, Route } from 'react-router-dom'
 
 const services = new Service()
 
@@ -26,7 +28,10 @@ export default function DashBoard() {
     return (
         <div className="container">
             <Appbar cart={cart} />
-            <Display cart={cart} getCartBooks={getCartBooks}  />
+            <Switch>
+                <Route exact path="/dashBoard/cart" component={() => <Display cart={cart} getCartBooks={getCartBooks} />} />
+                <Route exact path="/dashBoard/cart/placeOrder" component={PlaceOrder} />
+            </Switch>
             <Footer />
         </div>
     )

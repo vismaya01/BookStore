@@ -4,7 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import './Display.css'
 import Image from "../../assets/Image.png"
 import Pagination from '@material-ui/lab/Pagination';
+import PaginationItem from "@material-ui/lab/PaginationItem";
 import { useHistory } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Service from '../../services/userServices'
 
 const services = new Service()
@@ -44,7 +46,6 @@ export default function Display(props) {
     const classes = useStyles();
     const [books, setBooks] = useState([]);
     let history = useHistory();
-    const [sort, setSort] = useState(10)
 
     const getAllBooks = (sort) => {
         services.getAllBook().then((res) => {
@@ -52,7 +53,7 @@ export default function Display(props) {
             console.log(res.data.result)
             books.map(item => item.isAdded = false)
             console.log(sort)
-            switch(sort) {
+            switch (sort) {
                 case "20":
                     console.log("hii")
                     setBooks(books.sort((a, b) => (
@@ -86,9 +87,10 @@ export default function Display(props) {
         services.addCart(value._id, localStorage.getItem("userToken")).then((res) => {
             console.log(res)
             props.getCartBooks()
-            history.push("/cart")
+            history.push("/dashBoard/cart")
         }).catch((err) => {
             console.log(err)
+            history.push("/dashBoard/cart")
         })
     }
 
@@ -104,6 +106,10 @@ export default function Display(props) {
         let selectedValue = e.target.value;
         getAllBooks(selectedValue)
     }
+
+    const USER_PATH = "/dashBoard";
+
+    const { pageNumber = 1 } = useParams();
 
     return (
         <div className="books">
@@ -121,8 +127,9 @@ export default function Display(props) {
                     </Select>
                 </FormControl>
             </div>
-            <div className="display-book">
-                {books.map((item, index) => (
+            <div className="display-book">{(2 > 0 ? books.slice(
+                (Number(pageNumber) - 1) * 5,
+                (Number(pageNumber) - 1) * 5 + 5) : books).map((item, index) => (
                     <div className="display" key={index} >
                         {handleButton(item)}
                         <div className="image">
@@ -154,21 +161,33 @@ export default function Display(props) {
                                         <Button onClick={() => { addCartBook(item) }}
                                             variant="contained" color="primary" className={classes.MuiButtonContainedPrimary1}>
                                             ADD TO BAG
-                                            </Button>
+                                        </Button>
                                         <Button variant="outlined" className={classes.MuiButtonRoot}>
                                             WISHlIST
-                                            </Button>
+                                        </Button>
                                     </>
                                 }
                             </div>
                         </div>
                     </div>
-                ))}
+                )
+                )}
             </div>
             <div className="pagination">
-                <Pagination count={5} size="small" />
+                <Pagination
+                    count={Math.ceil(books.length / 5)}
+                    size="small"
+                    renderItem={(item) => (
+                        <PaginationItem
+                            type={"start-ellipsis"}
+                            component={Link}
+                            selected
+                            to={`${USER_PATH}/${item.page}`}
+                            {...item}
+                        />
+                    )}
+                />
             </div>
         </div>
     )
-
 }

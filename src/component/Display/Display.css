@@ -1,8 +1,9 @@
 .books {
-    min-height: 83vh;
+    min-height: 78vh;
     height: max-content;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     margin-left: 280px;
     margin-right: 150px;
     padding-top: 80px;

@@ -220,6 +220,9 @@ export default class Registration extends React.Component {
                 this.setState({
                     snackBarOpen: true, snackBarMsg: 'Registration is successfull',
                 });
+                setTimeout(() => {
+                    this.props.history.push("/login")
+                }, 1000);
             }).catch(err => {
                 console.log(err)
                 this.setState({
@@ -335,7 +338,7 @@ export default class Registration extends React.Component {
                     <div className='button-Content'>
                         <Button component={Link} to="/login" color="primary" >sign in instead</Button>
                         <div>
-                            <Button  variant="contained" color="primary" onClick={this.handleSubmit}>Sign Up</Button>
+                            <Button variant="contained" color="primary" onClick={this.handleSubmit}>Sign Up</Button>
                             <Snackbar open={this.state.snackBarOpen} close={this.snackBarClose} message={this.state.snackBarMsg} />
                         </div>
                     </div>

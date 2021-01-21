@@ -14,8 +14,8 @@ function App() {
           <Redirect exact from="/" to="/login" />
           <Route exact path="/registration" component={Registration} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/dashBoard" component={DashBoard}/>
-          <ProtectedRoute  exact path="/dashBoard/cart" component={Cart}/>
+          <Route  path="/dashBoard/:pageNumber" component={DashBoard}/>
+          <ProtectedRoute path="/dashBoard/cart" component={Cart}/>
         </Switch>
       </BrowserRouter>
     </div>
