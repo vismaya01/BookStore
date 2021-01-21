@@ -3,7 +3,8 @@
     padding-top: 90px;
     margin-left: 100px;
     margin-right: 100px;
-    min-height: 100vh;
+    min-height: 83vh;
+    height: max-content;
 }
 
 .cart1 {
@@ -149,7 +150,7 @@
 
 .order1 {
     width: 774px;
-    height: 237px;
+    height: max-content;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;

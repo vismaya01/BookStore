@@ -1,5 +1,6 @@
 .books {
-    height: 90vh;
+    min-height: 83vh;
+    height: max-content;
     display: flex;
     flex-direction: column;
     margin-left: 280px;
@@ -54,14 +55,20 @@
 
 .description {
     position: absolute;
-    width: 130px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     z-index: 1;
     background-color: #FFFFFF;
+    padding: 10px;
 }
 
 .description1 {
     display: none;
+}
+
+.book-details {
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .details {
@@ -103,6 +110,12 @@
     display: flex;
     justify-content: space-between;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
   
 
 @media screen and (max-width: 750px){
@@ -111,7 +124,17 @@
         margin-right: 50px;
         padding-top: 60px;
     }
+}
 
+@media screen and (max-width: 450px){
+    .books1 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title2 {
+        margin-left: 0px;
+    }
 }
 
 

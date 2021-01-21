@@ -30,8 +30,7 @@ export default function DisplayCart(props) {
         }).catch(err => {
             console.log(err)
         })
-    }
-    
+    } 
 
     const deleteCart = (value) => {
         services.deleteCart(value._id, localStorage.getItem("userToken")).then(res => {
@@ -91,7 +90,7 @@ export default function DisplayCart(props) {
             </div>
             <div className={openOrder ? "order1" : "order"}>
                 Order Summery
-                {openOrder ? <Order /> : null}
+                {openOrder ? <Order cart={props.cart} /> : null}
             </div>
         </div>
     )

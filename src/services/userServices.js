@@ -56,4 +56,12 @@ export default class UserService {
             }
         });
     }
+
+    placeOrder = (data,token) => {
+        return httpService.Post(`${this.baseUrl}​​/bookstore_user/add/order`, data,{
+            headers: {
+                "x-access-token": `${token}`,
+            }
+        });
+    }
 }

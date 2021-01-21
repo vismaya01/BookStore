@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import './Display.css'
 import Image from "../../assets/Image.png"
+import Pagination from '@material-ui/lab/Pagination';
 import Service from '../../services/userServices'
 
 const services = new Service()
@@ -106,32 +107,13 @@ export default function Display(props) {
                     <div className="display" key={index}>
                         {handleButton(item)}
                         <div className="image" onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose}>
-                            <img src={Image} alt="img" />
-                                {/* <Popover
-                                    id="mouse-over-popover"
-                                    className={classes.popover}
-                                    classes={{
-                                        paper: classes.paper,
-                                    }}
-                                    open={open}
-                                    anchorEl={anchorEl}
-                                    anchorOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'left',
-                                    }}
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'left',
-                                    }}
-                                    onClose={handlePopoverClose}
-                                    disableRestoreFocus> */}
-                                    <div className={anchorEl? "description" : "description1"}  onClose={handlePopoverClose}>
-                                        <div className="book-details">
-                                            Book Details
+                            <img src={Image} alt="img" />                        
+                            <div className={anchorEl ? "description" : "description1"} onClose={handlePopoverClose}>
+                                <div className="book-details">
+                                    Book Details
                                         </div>
-                                        {item.description}
-                                    </div>
-                                {/* </Popover> */}
+                                {item.description}
+                            </div>
                         </div>
                         <div className="details">
                             <div className="title1">
@@ -163,6 +145,9 @@ export default function Display(props) {
                         </div>
                     </div>
                 ))}
+            </div>
+            <div className="pagination">
+                <Pagination count={5} size="small" />
             </div>
         </div>
     )
