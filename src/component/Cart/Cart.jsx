@@ -29,8 +29,8 @@ export default function DashBoard() {
         <div className="container">
             <Appbar cart={cart} />
             <Switch>
-                <Route exact path="/dashBoard/cart" component={() => <Display cart={cart} getCartBooks={getCartBooks} />} />
-                <Route exact path="/dashBoard/cart/placeOrder" component={PlaceOrder} />
+                <Route exact path="/cart" component={() => <Display cart={cart} getCartBooks={getCartBooks} />} />
+                <Route exact path="/cart/placeOrder" component={PlaceOrder} />
             </Switch>
             <Footer />
         </div>

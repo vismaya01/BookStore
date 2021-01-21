@@ -35,7 +35,7 @@ export default function Appbar(props) {
         <div className="header">
             <div className="heading">
                 <div className="logo">
-                    <IconButton style={{ padding: 0 }} component={Link} to="/dashBoard">
+                    <IconButton style={{ padding: 0 }} component={Link} to="/dashBoard/1">
                         <img src={education} alt='img' />
                     </IconButton>
                 </div>
@@ -73,7 +73,7 @@ export default function Appbar(props) {
                 </div>
                 <div className="cart">
                     Cart
-                    <IconButton aria-label="cart" style={{ color: '#ffffff' }} component={Link} to="/dashBoard/cart">
+                    <IconButton aria-label="cart" style={{ color: '#ffffff' }} component={Link} to="/cart">
                         <StyledBadge badgeContent={props.cart.length}>
                             <AddShoppingCartIcon fontSize="small" />
                         </StyledBadge>

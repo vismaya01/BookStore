@@ -15,7 +15,7 @@ function App() {
           <Route exact path="/registration" component={Registration} />
           <Route exact path="/login" component={Login} />
           <Route  path="/dashBoard/:pageNumber" component={DashBoard}/>
-          <ProtectedRoute path="/dashBoard/cart" component={Cart}/>
+          <ProtectedRoute path="/cart" component={Cart}/>
         </Switch>
       </BrowserRouter>
     </div>

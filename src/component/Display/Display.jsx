@@ -55,7 +55,6 @@ export default function Display(props) {
             console.log(sort)
             switch (sort) {
                 case "20":
-                    console.log("hii")
                     setBooks(books.sort((a, b) => (
                         a.price > b.price ? 1 : -1
                     )))
@@ -87,10 +86,10 @@ export default function Display(props) {
         services.addCart(value._id, localStorage.getItem("userToken")).then((res) => {
             console.log(res)
             props.getCartBooks()
-            history.push("/dashBoard/cart")
+            history.push("/cart")
         }).catch((err) => {
             console.log(err)
-            history.push("/dashBoard/cart")
+            history.push("/cart")
         })
     }
 
