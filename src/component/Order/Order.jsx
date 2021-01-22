@@ -3,6 +3,7 @@ import './Order.css'
 import Image from '../../assets/Image.png'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from "react-router-dom";
 import Service from '../../services/userServices'
 
 const services = new Service()
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Order = (props) => {
     const classes = useStyles();
+    let history = useHistory();
 
     const placeOerder = () => {
         let orders = []
@@ -32,6 +34,7 @@ const Order = (props) => {
         }
         services.placeOrder(data, localStorage.getItem("userToken")).then(res => {
             console.log(res)
+            history.push("/cart/placeOrder")
         }).catch(err => {
             console.log(err)
         })
