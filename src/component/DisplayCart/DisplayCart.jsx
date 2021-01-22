@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Profiler } from 'react'
 import './DisplayCart.css'
 import Image from '../../assets/Image.png'
 import { Button } from '@material-ui/core'
@@ -40,6 +40,26 @@ export default function DisplayCart(props) {
         }).catch(err => {
             console.log(err)
         })
+    }
+
+    const callback = (
+        id,
+        phase,
+        actualDuration,
+        baseDuration,
+        startTime,
+        commitTime,
+        interactions
+    ) => {
+        console.log(
+            id,
+            phase,
+            actualDuration,
+            baseDuration,
+            startTime,
+            commitTime,
+            interactions
+        )
     }
 
     return (
@@ -97,11 +117,17 @@ export default function DisplayCart(props) {
                     </div>
                     <div className={open ? "customer1" : "customer"}>
                         Customer Details
-                {open ? <Customer open={openOrder} setOpen={setOpenOrder} /> : null}
+                    {open ?
+                            <Profiler id="Main" onRender={callback}>
+                                <Customer open={openOrder} setOpen={setOpenOrder} />
+                            </Profiler> : null}
                     </div>
                     <div className={openOrder ? "order1" : "order"}>
                         Order Summery
-                {openOrder ? <Order cart={props.cart} /> : null}
+                    {openOrder ?
+                            <Profiler id="Main" onRender={callback}>
+                                <Order cart={props.cart} />
+                            </Profiler> : null}
                     </div>
                 </>
             }

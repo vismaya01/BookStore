@@ -89,7 +89,7 @@ export default function Display(props) {
             history.push("/cart")
         }).catch((err) => {
             console.log(err)
-            history.push("/cart")
+            history.push("/login")
         })
     }
 

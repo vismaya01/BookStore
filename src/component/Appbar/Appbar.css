@@ -143,4 +143,12 @@
     .header {
         position: fixed;
     }
+
+    .heading {
+        margin: 0px;
+    }
+
+    .title {
+        margin: 0px;
+    }
 }

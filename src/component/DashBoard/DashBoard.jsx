@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Profiler } from 'react';
 import Appbar from '../Appbar/Appbar'
 import Display from '../Display/Display'
 import Service from '../../services/userServices'
@@ -23,12 +23,37 @@ export default function DashBoard() {
         getCartBooks()
     }, [])
 
+    const callback = (
+        id,
+        phase,
+        actualDuration,
+        baseDuration,
+        startTime,
+        commitTime,
+        interactions
+    ) => {
+        console.log(
+            id,
+            phase,
+            actualDuration,
+            baseDuration,
+            startTime,
+            commitTime,
+            interactions
+        )
+    }
 
     return (
         <div className="container">
-            <Appbar cart={cart} />
-            <Display cart={cart} getCartBooks={getCartBooks} />
-            <Footer />
+            <Profiler id="Main" onRender={callback}>
+                <Appbar cart={cart} />
+            </Profiler>
+            <Profiler id="Main" onRender={callback}>
+                <Display cart={cart} getCartBooks={getCartBooks} />
+            </Profiler>
+            <Profiler id="Main" onRender={callback}>
+                <Footer />
+            </Profiler>
         </div>
     )
 }

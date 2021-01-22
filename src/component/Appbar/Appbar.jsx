@@ -13,7 +13,6 @@ import { withStyles } from '@material-ui/core/styles';
 const StyledBadge = withStyles((theme) => ({
     badge: {
         right: -3,
-        top: 13,
         padding: '0 4px',
         backgroundColor: '#ffffff',
         color: 'black',

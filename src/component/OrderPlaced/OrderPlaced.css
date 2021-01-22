@@ -64,3 +64,42 @@ td {
 .admin-address {
     width: 900px;
 }
+
+.table {
+    display: none;
+}
+
+.contact1 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 5px;
+}
+
+.contact1 > div {
+    font-size: 20px;
+}
+
+@media screen and (max-width: 760px) {
+    .order-paced {
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+    table {
+        display: none;
+    }
+
+    .table {
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+    .msg {
+        width: 100%;
+    }
+}

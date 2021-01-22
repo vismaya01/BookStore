@@ -9,3 +9,11 @@
     display: flex;
     justify-content: flex-end;
 }
+
+@media screen and (max-width: 600px) {
+    .bookdetails1 {
+        height: max-content;
+        flex-direction: column;
+        width: max-content;
+    }
+}

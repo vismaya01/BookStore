@@ -22,3 +22,17 @@
 .MuiFormGroup-root {
     flex-direction: row !important;
 }
+
+
+@media screen and (max-width: 800px) {
+    .customer1 {
+        height: max-content;
+    }
+
+    .first {
+        flex-direction: column;
+        height: max-content;
+        width: 100%;
+        margin: 0px;
+    }
+}

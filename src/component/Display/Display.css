@@ -1,19 +1,19 @@
 .books {
-    min-height: 78vh;
+    min-height: 78.1vh;
     height: max-content;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-left: 280px;
+    margin-left: 200px;
     margin-right: 150px;
     padding-top: 80px;
 }
 
 .head {
-    width: 100%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    margin-right: 100px;
 }
 
 .title2 {
@@ -58,13 +58,14 @@
     display: block;
     position: absolute;
     width: 180px;
-    height: 180px;
+    height: 150px;
     z-index: 1;
     background-color: #FFFFFF;
     padding: 10px;
     border: 1px solid #ccc1c1;
     box-shadow: 10px 10px 10px 10px #d6cece;
     border-radius: 5px;
+    margin-left: 350px;
 }
 
 .description {
@@ -122,6 +123,13 @@
     margin: 10px;
 }
   
+@media screen and (max-width: 1100px){
+    .books {
+        margin-left: 100px;
+        margin-right: 50px;
+        padding-top: 60px;
+    }
+}
 
 @media screen and (max-width: 750px){
     .books {
@@ -139,6 +147,15 @@
 
     .title2 {
         margin-left: 0px;
+    }
+
+    .head {
+        margin-right: 0;
+    }
+    
+    .image:hover .description {
+        margin-left: 0px;
+        margin-top: 150px;
     }
 }
 

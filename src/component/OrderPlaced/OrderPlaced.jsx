@@ -30,6 +30,21 @@ export default function OrderPlaced() {
                     </td>
                 </tr>
             </table>
+            <div className="table">
+                <div className="contact1">
+                    <div>Email us</div>
+                    <span>admin@bookstore.com</span>
+                </div>
+                <div className="contact1">
+                <div>Contact us</div>
+                    <span>+91 8163475881</span>
+                </div>
+                <div className="contact1">
+                <div> Address</div>
+                    <span> 42, 14th Main, 15th Cross, Sector 4 ,opp to BDA complex, near Kumarakom restaurant, HSR Layout, Bangalore 560034
+                    </span>
+                </div>
+            </div>
             <div className="final-button">
                 <Button variant="contained" color="primary" component={Link} to="/dashBoard/1">
                     Continue shopping
