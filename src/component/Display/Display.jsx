@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
     },
     MuiButtonContainedPrimary1: {
-        backgroundColor: ' #A03037',
+        backgroundColor: '#A03037',
         width: 95,
         height: 40,
         padding: 4,
@@ -32,14 +32,9 @@ const useStyles = makeStyles((theme) => ({
         width: 215,
     },
     MuiOutlinedInputRoot: {
-        width: 170,
+        width: 175,
         height: 40,
-    },
-    popover: {
-        pointerEvents: 'none',
-    },
-    paper: {
-        padding: theme.spacing(1),
+        padding: 5,
     },
 }));
 export default function Display(props) {

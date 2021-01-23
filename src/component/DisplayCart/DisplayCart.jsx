@@ -95,13 +95,13 @@ export default function DisplayCart(props) {
                                     <div className="quantity">
                                         <div className="control" onClick={() => { quantityUpdate(item, item.quantityToBuy - 1) }}>
                                             -
-                                </div>
+                                        </div>
                                         <div className="value1">
                                             {item.quantityToBuy}
                                         </div>
                                         <div className="control" onClick={() => { quantityUpdate(item, item.quantityToBuy + 1) }}>
                                             +
-                                </div>
+                                        </div>
                                         <div className="remove" onClick={() => deleteCart(item)}>
                                             Remove
                                  </div>
