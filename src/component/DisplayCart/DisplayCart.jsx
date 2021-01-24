@@ -51,15 +51,6 @@ export default function DisplayCart(props) {
         commitTime,
         interactions
     ) => {
-        console.log(
-            id,
-            phase,
-            actualDuration,
-            baseDuration,
-            startTime,
-            commitTime,
-            interactions
-        )
     }
 
     return (
@@ -126,7 +117,7 @@ export default function DisplayCart(props) {
                         Order Summery
                     {openOrder ?
                             <Profiler id="Main" onRender={callback}>
-                                <Order cart={props.cart} />
+                                <Order cart={props.cart} deleteCart={deleteCart}  />
                             </Profiler> : null}
                     </div>
                 </>

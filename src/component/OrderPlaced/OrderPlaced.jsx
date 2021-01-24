@@ -14,7 +14,7 @@ export default function OrderPlaced() {
                 </div>
             </div>
             <div className="msg">
-                hurray!!! your order is confirmed the order id is #123456 save the order id for further communication..
+                hurray!!! your order is confirmed the order id is #{Math.floor(100000 + Math.random() * 900000)} save the order id for further communication..
             </div>
             <table>
                 <tr className="table-head">

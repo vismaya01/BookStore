@@ -136,7 +136,7 @@
 
 .customer1 {
     width: 774px;
-    height: 450px;
+    height: max-content;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #DCDCDC;
     border-radius: 1px;

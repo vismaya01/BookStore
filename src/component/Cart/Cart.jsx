@@ -25,36 +25,27 @@ export default function DashBoard() {
     }, [])
 
     const callback = (
-        id, 
-        phase, 
-        actualDuration, 
-        baseDuration, 
-        startTime, 
+        id,
+        phase,
+        actualDuration,
+        baseDuration,
+        startTime,
         commitTime,
-        interactions 
+        interactions
     ) => {
-        console.log(
-            id, 
-            phase, 
-            actualDuration, 
-            baseDuration, 
-            startTime, 
-            commitTime, 
-            interactions 
-        )
     }
 
     return (
         <div className="container">
             <Profiler id="Main" onRender={callback}>
-            <Appbar cart={cart} />
+                <Appbar cart={cart} />
             </Profiler>
             <Switch>
-                <Route exact path="/cart" component={() => <Display cart={cart} getCartBooks={getCartBooks} />} />
-                <Route exact path="/cart/placeOrder" component={PlaceOrder} />
+                <Route exact path="/cart" component={() => <Display cart={cart} getCartBooks={getCartBooks}/>} />
+                <Route exact path="/cart/placeOrder" component={PlaceOrder}/>
             </Switch>
             <Profiler id="Main" onRender={callback}>
-            <Footer />
+                <Footer />
             </Profiler>
         </div>
     )

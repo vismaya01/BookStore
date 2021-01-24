@@ -125,7 +125,7 @@ export default class Registration extends React.Component {
                 console.log(res.data.result.accessToken)
                 localStorage.setItem("userToken", res.data.result.accessToken);
                 this.setState({
-                    snackBarOpen: true, snackBarMsg: 'Registration is successfull',
+                    snackBarOpen: true, snackBarMsg: 'Login is successfull',
                 });
                 setTimeout(() => {
                     this.props.history.push("/dashBoard/1")
@@ -133,7 +133,7 @@ export default class Registration extends React.Component {
             }).catch(err => {
                 console.log(err)
                 this.setState({
-                    snackBarOpen: true, snackBarMsg: 'Registration is failed',
+                    snackBarOpen: true, snackBarMsg: 'Login is failed',
                 });
             })   
             console.log(userData)

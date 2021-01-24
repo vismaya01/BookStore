@@ -134,6 +134,13 @@ export default function Display(props) {
                                         </div>
                                 {item.description}
                             </div>
+                            {item.quantity<=0?
+                            <div className="outstock">
+                                <div className="msg5">
+                                    Out of Stock
+                                </div>
+                            </div>
+                            : null }
                         </div>
                         <div className="details">
                             <div className="title1">

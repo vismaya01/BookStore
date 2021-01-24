@@ -32,15 +32,6 @@ export default function DashBoard() {
         commitTime,
         interactions
     ) => {
-        console.log(
-            id,
-            phase,
-            actualDuration,
-            baseDuration,
-            startTime,
-            commitTime,
-            interactions
-        )
     }
 
     return (

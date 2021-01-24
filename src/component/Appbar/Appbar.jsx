@@ -21,13 +21,24 @@ const StyledBadge = withStyles((theme) => ({
 
 export default function Appbar(props) {
     const [open, setOpen] = useState(false);
+    const [open1, setOpen1] = useState(true);
 
     const handleOpen = () => {
+        handleButton()
         setOpen(!open)
     }
 
     const handleLogout = () => {
         localStorage.clear();
+    }
+
+    const handleButton = () => {
+        if (localStorage.getItem('userToken') !== null) {
+            setOpen1(false)
+        }  
+        else {
+            setOpen1(true)
+        }
     }
 
     return (
@@ -53,10 +64,10 @@ export default function Appbar(props) {
                     <PersonOutlineIcon fontSize="small" />
                     Profile
                 </div>
-                <div className={open ? "popup" : "hide"}>
+                <div className={open ? "popup" : "hide"} >
                     <div className="sign">
-                        {localStorage.getItem("userToken") === "" ?
-                            <Button component={Link} to="/login">
+                        {open1 ?
+                            <Button component={Link} to="/login" >
                                 Login/SignUp
                             </Button>
                             :

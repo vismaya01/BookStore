@@ -4,16 +4,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-left: 200px;
-    margin-right: 150px;
     padding-top: 80px;
+    width: 1000px;
 }
 
 .head {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    margin-right: 100px;
+    margin-right: 20px;
 }
 
 .title2 {
@@ -63,13 +62,38 @@
     background-color: #FFFFFF;
     padding: 10px;
     border: 1px solid #ccc1c1;
-    box-shadow: 10px 10px 10px 10px #d6cece;
     border-radius: 5px;
-    margin-left: 350px;
+    margin-left: 430px;
+    margin-top: -10px;
 }
 
 .description {
     display: none;
+}
+
+.outstock {
+    width: 230px;
+    height: 280px;
+    position: absolute;
+    opacity: 0.7;
+    z-index: 1;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+}
+
+.msg5 {
+    border: 1px solid black;
+    font-size: 30px;
+    width: max-content;
+    height: max-content;
+    font-weight: bold;
+    opacity: 1;
+    z-index: 1;
+    background-color: #FFFFFF;
+    transform: rotate(-45deg);
+    margin-top: 50px;
+    color: #000000
 }
 
 .book-details {
@@ -125,17 +149,19 @@
   
 @media screen and (max-width: 1100px){
     .books {
-        margin-left: 100px;
-        margin-right: 50px;
-        padding-top: 60px;
+       width: 750px;
     }
 }
 
-@media screen and (max-width: 750px){
+@media screen and (max-width: 800px){
     .books {
-        margin-left: 50px;
-        margin-right: 50px;
-        padding-top: 60px;
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 550px){
+    .books {
+        width: 250px;
     }
 }
 

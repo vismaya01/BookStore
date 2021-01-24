@@ -20,20 +20,24 @@ const Order = (props) => {
 
     const placeOerder = () => {
         let orders = []
-        props.cart.map((item)=> {           
+        props.cart.map((item) => {
             let product = {
                 "product_id": item.product_id._id,
                 "product_name": item.product_id.bookName,
                 "product_quantity": item.quantityToBuy,
                 "product_price": item.product_id.price
             }
-            orders = [...orders , product]            
-        })      
+            orders = [...orders, product]
+        })
         let data = {
-            "orders" : orders
+            "orders": orders
         }
         services.placeOrder(data, localStorage.getItem("userToken")).then(res => {
             console.log(res)
+            props.cart.map((item) => {
+                console.log()
+                props.deleteCart(item)
+            })
             history.push("/cart/placeOrder")
         }).catch(err => {
             console.log(err)
@@ -41,30 +45,30 @@ const Order = (props) => {
     }
 
     return (<>
-    {props.cart.map(item => (
-        <div className="bookdetails1" >
-            <div className="image1">
-                <img src={Image} alt="img" />
-            </div>
-            <div className="details1">
-                <div className="Booktitle">
-                    {item.product_id.bookName}
+        {props.cart.map(item => (
+            <div className="bookdetails1" >
+                <div className="image1">
+                    <img src={Image} alt="img" />
                 </div>
-                <div className="auther">
-                    {item.product_id.author}
+                <div className="details1">
+                    <div className="Booktitle">
+                        {item.product_id.bookName}
+                    </div>
+                    <div className="auther">
+                        {item.product_id.author}
+                    </div>
+                    <div className="cash">
+                        RS. {item.product_id.price}
+                    </div>
                 </div>
-                <div className="cash">
-                    RS. {item.product_id.price}
-                </div>
-            </div>
-        </div >
+            </div >
         ))}
-         <div className="checkout">
-         <Button className={classes.MuiButtonRoot} onClick={placeOerder}  variant="contained" color="primary">
-             CHECKOUT
+        <div className="checkout">
+            <Button className={classes.MuiButtonRoot} onClick={placeOerder} variant="contained" color="primary">
+                CHECKOUT
          </Button>
-     </div>
-     </>
+        </div>
+    </>
     )
 }
 

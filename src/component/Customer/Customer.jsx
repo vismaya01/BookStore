@@ -85,6 +85,23 @@ const Customer = (props) => {
         return valid
     }
 
+    const empty = () => {
+        setflagState(false)
+        setflagAddress(false)
+        setflagName(false)
+        setflagPhoneNumber(false)
+        setflagPincode(false)
+        setflagLocality(false)
+        setflagCity(false)
+        setErrorName("")
+        setErrorPhoneNumber("")
+        setErrorPincode("")
+        setErrorState("")
+        setErrorCity("")
+        setErrorLocality("")
+        setErrorAddress("")
+    }
+
     const CustomerDetails = () => {
         if(validate()) {
             console.log("failed")
@@ -99,6 +116,7 @@ const Customer = (props) => {
             }
             services.customerDetails(data, localStorage.getItem("userToken")).then(res => {
                 console.log(res)
+                empty()
                 props.setOpen(true)
             }).catch(err => {
                 console.log(err)
